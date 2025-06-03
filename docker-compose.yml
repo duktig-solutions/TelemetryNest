@@ -1,0 +1,26 @@
+services:
+  cassandra:
+    image: cassandra-test
+    build: cassandra
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=admin
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+
+  redis: # Password: j65g3!h7^8f9d0s-f9g8
+    restart: always
+    build: redis
+    image: redis
+    container_name: redis
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6381:6379"
+
+volumes:
+  cassandra-data:
+  redis-data:
